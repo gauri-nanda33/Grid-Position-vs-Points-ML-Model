@@ -1,0 +1,6 @@
+fastf1
+streamlit
+logging
+panda
+fastf1.ergast
+os
