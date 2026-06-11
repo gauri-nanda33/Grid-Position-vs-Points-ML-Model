@@ -204,4 +204,4 @@ def load_data():
     merged.to_csv('f1_data.csv', index=False)
     return merged, x_train, y_train
 
-merged, x_train, y_train, w_final, b_final = load_data()
+merged, x_train, y_train = load_data()
