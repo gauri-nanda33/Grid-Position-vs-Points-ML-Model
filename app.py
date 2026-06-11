@@ -11,6 +11,11 @@ fastf1.Cache.enable_cache('my_cache')
 
 @st.cache_data
 def load_data():
+    if os.path.exists('f1_data.csv'):
+        merged = pd.read_csv('f1_data.csv')
+        x_train = merged['avg_quali_pos'].to_numpy()
+        y_train = merged['points'].to_numpy()
+        return merged, x_train, y_train
 
     drivers21 = ['VER', 'PER', 'HAM', 'BOT', 'RIC', 'NOR', 'VET', 'STR', 'ALO', 'OCO',
                 'LEC', 'SAI', 'GAS', 'TSU', 'RAI', 'GIO', 'MAZ', 'MSC', 'LAT', 'RUS']
@@ -196,6 +201,7 @@ def load_data():
     ax.set_title('F1 2021-2025 — Grid position vs Points')
     ax.legend()
     st.pyplot(fig)
-    return merged, x_train, y_train, w_final, b_final
+    merged.to_csv('f1_data.csv', index=False)
+    return merged, x_train, y_train
 
 merged, x_train, y_train, w_final, b_final = load_data()
